@@ -13,7 +13,7 @@ def dashboard():
     # st.header("Dashboard")
 
     with st.sidebar:
-        selected = option_menu("Menu", ["Home", "Dashboard","Chat","Logout"], icons=['house', 'activity'], menu_icon="cast", default_index=0)
+        selected = option_menu("Menu", ["Home", "Dashboard","Chat","Conversation","Logout"], icons=['house', 'activity'], menu_icon="cast", default_index=0)
     if selected == "Home":
         homepage()
         
@@ -21,6 +21,12 @@ def dashboard():
         "gfjfvjhvjhv"
     elif selected == "Chat":
         Chat()
+    elif selected == "Conversation":
+        convo()
+    elif selected == "Logout":
+        st.session_state["user"] = "visitor"
+        st.experimental_rerun()
+
 
        
         

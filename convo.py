@@ -5,23 +5,21 @@ from streamlit_option_menu import option_menu
 
 def convo():
     convo = st.text_input("Enter your message")
-    chatbot = pipeline(task= "conversational" ,model="microsoft/DialoGPT-medium")
-    # usrinput = Conversation(convo)
-    # chitchat = chatbot(usrinput)
-    
-    ans = chatbot(
-        convo,candidate_labels=["HELP","PROBLEM SOLVE","GENERAL TALK"])
-    conversation.generated_responses[-1] 
+    chatbot = pipeline(task="conversational", model="microsoft/DialoGPT-medium")
+    conversation = Conversation(convo)
 
-    if ans["scores"][0] > 0.85:
-        st.session_state["user"] = "visitor"
-        with st.chat_message("assistant"):
-            "You are now sleeping in dream"
-        st.experimental_rerun()
-    else:
-        with st.chat_message("assistant"):
-            chitchat
 
-    
-convo()    
-    
+
+    # candidate_labels = ["HELP", "PROBLEM SOLVE", "GENERAL TALK"]
+
+
+    ans = chatbot(conversation)
+    # add_user_input = st.button("Add User Input")
+
+    # conversation.add_user_input("{}".format(convo))
+    # conversation = chatbot(conversation)
+    # conversation.generated_responses[-1]
+    st.write(ans)
+
+
+convo()
